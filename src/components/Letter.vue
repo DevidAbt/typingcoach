@@ -2,19 +2,26 @@
   <div 
     id="letter"
     v-bind:class="{ 
-        correct: character.status === 'correct',
-        missed: character.status === 'missed',
-        next: character.status === 'next',
-        corrected: character.status === 'corrected'
+        correct: character.status === Status.CORRECT,
+        missed: character.status === Status.MISSED,
+        next: character.status === Status.NEXT,
+        corrected: character.status === Status.CORRECTED,
     }"
     >
     {{character.char}}</div>
 </template>
 
 <script>
+import Status from '../enums/status';
+
 export default {
     name: 'Letter',
-    props: ['character']
+    props: ['character'],
+    data() {
+        return {
+            Status
+        };
+    }
 }
 </script>
 
