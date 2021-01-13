@@ -1,6 +1,6 @@
 <template>
   <div id="pressed-key">
-      {{ this.character }}
+      {{ character }}
   </div>
 </template>
 

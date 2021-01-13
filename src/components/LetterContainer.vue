@@ -29,5 +29,6 @@ export default {
     border: 3px solid rgb(71, 71, 71);
     width: 1000px;
     height: 400px;
+    box-sizing: unset;
 }
 </style>
