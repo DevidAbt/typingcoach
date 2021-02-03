@@ -1,6 +1,5 @@
 <template>
     <div id="progress" >
-        <!-- {{ currnetCharacter }} / {{ getKeyPresses }} -->
         {{ getProgressString }}
     </div>
 </template>
@@ -10,16 +9,16 @@ export default {
     name: 'Progress',
     computed: {
         getProgressString() {
-            let current = this.$store.getters.currnetCharacter;
+            let correct = this.$store.getters.correctCharacters;
             let keyPresses = this.$store.getters.getKeyPresses;
 
-            return `${current}/${keyPresses} ${Math.round(100*current/keyPresses)}%`;
+            if (keyPresses === 0) {
+                return `${correct}/${keyPresses} 0%`;
+            }
+            else {
+                return `${correct}/${keyPresses} ${Math.round(100*correct/keyPresses)}%`;
+            }
         }
-    },
-    data() {
-        // let presses = this.$store.getters.getKeyPresses;
-        // console.log(presses);
-        return {}
     }
 }
 </script>
@@ -33,5 +32,6 @@ export default {
     height: 54px;
     text-align: center;
     padding-top: 2%;
+    margin: auto;
 }
 </style>

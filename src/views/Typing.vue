@@ -1,10 +1,19 @@
 <template>
   <div id="typing">
-    <LetterContainer 
-      v-bind:characters="allCharacters" 
-      />
-    <PressedKey v-bind:character="pressedCharacter"/>
-    <Progress/>
+    <div class="row">
+      <div class="col s12">
+        <LetterContainer 
+          v-bind:characters="allCharacters"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6">
+        <PressedKey v-bind:character="pressedCharacter"/>
+      </div>
+      <div class="col s6">
+        <Progress/>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -34,17 +43,22 @@ export default {
   methods: {
     ...mapActions(['loadCharacters', 'keyPressed', 'updateStatus', 'updateProgress']),
     keydown: function ($event) {
-      if ($event.key.match(/^[ a-zA-ZöüóőúéáűíÖÜÓŐÚÉÁŰÍ\-.,]$/)) {
+      if ($event.key.match(/^[ a-zA-ZöüóőúéáűíÖÜÓŐÚÉÁŰÍ0-9\-.,]$/)) {
         this.pressedCharacter = $event.key;
         this.keyPressed($event.key);
       }
     }
+  },
+  unmounted() {
+    window.removeEventListener('keydown', this.keydown)
   }
 }
 </script>
 
 <style>
-:root {
-  background-color: #1a1a1a;
+#typing {
+  margin: auto;
+  margin-top: 50px;
+  width: 1000px;
 }
 </style>

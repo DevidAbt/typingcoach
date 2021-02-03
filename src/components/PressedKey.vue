@@ -20,5 +20,6 @@ export default {
     width: 54px;
     height: 54px;
     text-align: center;
+    margin: auto;
 }
 </style>
