@@ -54,8 +54,6 @@ const actions = {
         const regexR = /[ a-zA-ZöüóőúéáűíÖÜÓŐÚÉÁŰÍ]/;
         for (let i = 20; i < characters.length; i += 20) {
             if (characters[i-1].char.match(regexL) && characters[i].char.match(regexR)) {
-                console.log(characters[i-3].char + characters[i-2].char + characters[i-1].char + characters[i].char + characters[i+1].char + characters[i+2].char + characters[i+3].char);
-                console.log(characters[i-1].char + characters[i].char);
                 let startIndex = i - 2;
                 while (characters[startIndex].char !== ' ') {
                     startIndex--;
@@ -63,8 +61,6 @@ const actions = {
                         break; //TODO skip
                     }
                 }
-
-                console.log(i-startIndex-1);
 
                 for (let j = 0; j < i - startIndex - 1; j++) {
                     characters.splice(startIndex + 1, 0, {
@@ -96,12 +92,8 @@ const actions = {
         commit('setCharacters', characters);
     },
     updateCurrentCharacters({ commit }) {
-        console.log(state.characters.length);
-        console.log(state.nextBatchPosition);
         let rowsToShift = (state.characters.length - state.nextBatchPosition) / 20
         rowsToShift = rowsToShift > 6 ? 6 : rowsToShift;
-        console.log('rowsToShift');
-        console.log(rowsToShift);
 
         let currentCharacters = state.currentCharacters;
         currentCharacters = currentCharacters.slice(rowsToShift * 20, currentCharacters.length);
