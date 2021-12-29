@@ -1,5 +1,7 @@
 # typingcoach
 
+A typing trainer app. (My first experimenting with Vue.js)
+
 ## Project setup
 ```
 yarn install
